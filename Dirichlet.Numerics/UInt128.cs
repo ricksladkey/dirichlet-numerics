@@ -176,7 +176,7 @@ namespace Dirichlet.Numerics
         public ulong S1 { get { return s1; } }
 
         public bool IsZero { get { return (s0 | s1) == 0; } }
-        public bool IsOne { get { return (s1 ^ s0) == 1; } }
+        public bool IsOne { get { return s1 == 0 && s0 == 1; } }
         public bool IsPowerOfTwo { get { return (this & (this - 1)).IsZero; } }
         public bool IsEven { get { return (s0 & 1) == 0; } }
         public int Sign { get { return IsZero ? 0 : 1; } }
