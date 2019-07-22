@@ -1122,10 +1122,10 @@ namespace Dirichlet.Numerics
                 UInt128 aneg;
                 UInt128.Negate(out aneg, ref a.v);
                 if (b < 0)
-                    UInt128.Multiply(out c.v, ref aneg, (uint)(-b));
+                    UInt128.Divide(out c.v, ref aneg, (uint)(-b));
                 else
                 {
-                    UInt128.Multiply(out c.v, ref aneg, (uint)b);
+                    UInt128.Divide(out c.v, ref aneg, (uint)b);
                     UInt128.Negate(ref c.v);
                 }
             }
@@ -1133,11 +1133,11 @@ namespace Dirichlet.Numerics
             {
                 if (b < 0)
                 {
-                    UInt128.Multiply(out c.v, ref a.v, (uint)(-b));
+                    UInt128.Divide(out c.v, ref a.v, (uint)(-b));
                     UInt128.Negate(ref c.v);
                 }
                 else
-                    UInt128.Multiply(out c.v, ref a.v, (uint)b);
+                    UInt128.Divide(out c.v, ref a.v, (uint)b);
             }
             Debug.Assert((BigInteger)c == (BigInteger)a / (BigInteger)b);
         }
@@ -1305,6 +1305,7 @@ namespace Dirichlet.Numerics
                     UInt128 bneg;
                     UInt128.Negate(out bneg, ref b.v);
                     UInt128.Remainder(out c.v, ref aneg, ref bneg);
+                    UInt128.Negate(ref c.v);
                 }
                 else
                 {
@@ -1319,7 +1320,6 @@ namespace Dirichlet.Numerics
                     UInt128 bneg;
                     UInt128.Negate(out bneg, ref b.v);
                     UInt128.Remainder(out c.v, ref a.v, ref bneg);
-                    UInt128.Negate(ref c.v);
                 }
                 else
                     UInt128.Remainder(out c.v, ref a.v, ref b.v);
